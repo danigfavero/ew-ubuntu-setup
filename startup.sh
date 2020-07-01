@@ -94,6 +94,7 @@ source ~/.zshrc
 
 echo 'installing theme'
 sudo apt install fonts-firacode -y
+sudo apt install fonts-powerline
 sh -c "$ (curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh )"
 sed -i 's/.*ZSH_THEME=.*/ZSH_THEME="agnoster"/g' ~/.zshrc
 
