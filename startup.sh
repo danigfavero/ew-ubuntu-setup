@@ -98,8 +98,7 @@ sh -c "$ (curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/
 sed -i 's/.*ZSH_THEME=.*/ZSH_THEME="agnoster"/g' ~/.zshrc
 
 echo 'installing slack' 
-wget https://downloads.slack-edge.com/linux_releases/slack-desktop-3.3.8-amd64.deb
-sudo apt install ./slack-desktop-*.deb -y
+sudo apt remove slack
 
 echo 'installing terminator'
 sudo apt-get update
@@ -122,16 +121,21 @@ docker-compose --version
 
 echo 'installing brave'
 curl -s https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-release.gpg add -
-source /etc/os-release
-echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ $UBUNTU_CODENAME main" | sudo tee /etc/apt/sources.list.d/brave-browser-release-${UBUNTU_CODENAME}.list
+echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | sudo tee /etc/apt/sources.list.d/brave-browser-release.list
 sudo apt update
-sudo apt install brave-keyring brave-browser
+sudo apt install brave-browser
 
 echo 'installing discord'
 sudo snap install discord
 
-echo 'installing eclipse'
+echo 'installing java'
+sudo apt-get update
 sudo apt install default-jre
+java -version
+export JAVA_HOME=/usr/java/jre11.0.7
+export PATH=${PATH}:${JAVA_HOME}/bin
+
+echo 'installing eclipse'
 sudo snap install --classic eclipse
 
 echo 'installing telegram'
@@ -148,3 +152,16 @@ echo 'installing zoom'
 wget -O Downloads/zoom.deb https://zoom.us/client/latest/zoom_amd64.deb
 sudo apt update
 sudo apt install ~/Downloads/zoom.deb
+
+echo 'installing htop'
+sudo apt install htop
+
+echo 'installing gimp'
+sudo add-apt-repository ppa:otto-kesselgulasch/gimp
+sudo apt-get update
+sudo apt-get install gimp gimp-gmic gmic
+sudo apt-get install gimp-plugin-registry
+
+echo 'installing weather extension'
+sudo apt install gnome-shell-extension-weather
+echo 'press ALT+F12 to restart the shell'
