@@ -1,4 +1,7 @@
+echo 'updating...'
 sudo apt-get update
+
+######## terminal ########
 
 echo 'installing curl' 
 sudo apt install curl -y
@@ -34,6 +37,10 @@ cat ~/.ssh/id_rsa.pub | xclip -selection clipboard
 echo 'enabling workspaces for both screens' 
 gsettings set org.gnome.mutter workspaces-only-on-primary false
 
+echo 'installing terminator'
+sudo apt-get update
+sudo apt-get install terminator -y
+
 echo 'installing zsh'
 sudo apt-get install zsh -y
 sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
@@ -45,6 +52,29 @@ sudo apt-get install xclip -y
 export alias pbcopy='xclip -selection clipboard'
 export alias pbpaste='xclip -selection clipboard -o'
 source ~/.zshrc
+
+source ~/.zshrc
+nvm --version
+nvm install 12
+nvm alias default 12
+node --version
+npm --version
+
+echo 'installing autosuggestions' 
+git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+echo "source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc
+source ~/.zshrc
+
+echo 'installing theme'
+sudo apt install fonts-firacode -y
+sudo apt install fonts-powerline
+sh -c "$ (curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh )"
+sed -i 's/.*ZSH_THEME=.*/ZSH_THEME="agnoster"/g' ~/.zshrc
+
+echo 'installing htop'
+sudo apt install htop
+
+######## coding ########
 
 echo 'installing vim'
 sudo apt install vim -y
@@ -65,8 +95,15 @@ code --install-extension ms-vsliveshare.vsliveshare
 code --install-extension ms-python.python
 code --install-extension ms-vsliveshare.vsliveshare-audio
 
-echo 'installing spotify' 
-snap install spotify
+echo 'installing java'
+sudo apt-get update
+sudo apt install default-jre
+java -version
+export JAVA_HOME=/usr/java/jre11.0.7
+export PATH=${PATH}:${JAVA_HOME}/bin
+
+echo 'installing eclipse'
+sudo snap install --classic eclipse
 
 echo 'installing nvm' 
 sh -c "$(curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash)"
@@ -79,31 +116,6 @@ git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-
-source ~/.zshrc
-nvm --version
-nvm install 12
-nvm alias default 12
-node --version
-npm --version
-
-echo 'installing autosuggestions' 
-git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
-echo "source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc
-source ~/.zshrc
-
-echo 'installing theme'
-sudo apt install fonts-firacode -y
-sudo apt install fonts-powerline
-sh -c "$ (curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh )"
-sed -i 's/.*ZSH_THEME=.*/ZSH_THEME="agnoster"/g' ~/.zshrc
-
-echo 'installing slack' 
-sudo apt remove slack
-
-echo 'installing terminator'
-sudo apt-get update
-sudo apt-get install terminator -y
 
 echo 'installing docker' 
 sudo apt-get remove docker docker-engine docker.io
@@ -120,24 +132,21 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-
 sudo chmod +x /usr/local/bin/docker-compose
 docker-compose --version
 
+######## browsers ########
+
 echo 'installing brave'
 curl -s https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-release.gpg add -
 echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | sudo tee /etc/apt/sources.list.d/brave-browser-release.list
 sudo apt update
 sudo apt install brave-browser
 
+######## communication ########
+
+echo 'installing slack' 
+sudo snap install slack
+
 echo 'installing discord'
 sudo snap install discord
-
-echo 'installing java'
-sudo apt-get update
-sudo apt install default-jre
-java -version
-export JAVA_HOME=/usr/java/jre11.0.7
-export PATH=${PATH}:${JAVA_HOME}/bin
-
-echo 'installing eclipse'
-sudo snap install --classic eclipse
 
 echo 'installing telegram'
 sudo add-apt-repository ppa:atareao/telegram
@@ -154,8 +163,7 @@ wget -O Downloads/zoom.deb https://zoom.us/client/latest/zoom_amd64.deb
 sudo apt update
 sudo apt install ~/Downloads/zoom.deb
 
-echo 'installing htop'
-sudo apt install htop
+######## media players/editors ########
 
 echo 'installing gimp'
 sudo add-apt-repository ppa:otto-kesselgulasch/gimp
@@ -163,6 +171,27 @@ sudo apt-get update
 sudo apt-get install gimp gimp-gmic gmic
 sudo apt-get install gimp-plugin-registry
 
+echo 'installing vlc'
+sudo snap install vlc
+
+echo 'installing spotify' 
+snap install spotify
+
+######## ubuntu extensions ########
+
+echo 'installing gnome-tweaks'
+sudo apt install gnome-tweaks
+
+echo 'installing shell extensions'
+sudo apt install gnome-shell-extensions
+
 echo 'installing weather extension'
 sudo apt install gnome-shell-extension-weather
-echo 'press ALT+F12 to restart the shell'
+echo 'press ALT+F2, then r to restart the shell'
+
+
+echo 'updating...'
+sudo apt-get update
+
+echo 'upgrading...'
+sudo apt-get upgrade
