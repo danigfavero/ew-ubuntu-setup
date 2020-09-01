@@ -1,0 +1,14 @@
+{
+    
+    "workbench.colorCustomizations": {
+        "statusBar.background" : "#1d444e",
+        "statusBar.noFolderBackground" : "#1d444e",
+        "statusBar.debuggingBackground": "#1d444e"
+    },
+
+    "editor.renderWhitespace": "all",
+
+    "editor.fontFamily": "Fira Code",
+    "editor.fontLigatures": true,
+
+}
