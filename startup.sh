@@ -132,6 +132,12 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-
 sudo chmod +x /usr/local/bin/docker-compose
 docker-compose --version
 
+echo 'installing insomnia'
+echo "deb https://dl.bintray.com/getinsomnia/Insomnia /" | sudo tee -a /etc/apt/sources.list.d/insomnia.list
+wget --quiet -O - https://insomnia.rest/keys/debian-public.key.asc | sudo apt-key add -
+sudo apt-get update
+sudo apt-get install insomnia
+
 ######## browsers ########
 
 echo 'installing brave'
@@ -152,12 +158,6 @@ echo 'installing telegram'
 sudo add-apt-repository ppa:atareao/telegram
 sudo apt update && sudo apt install telegram
 
-echo 'installing insomnia'
-echo "deb https://dl.bintray.com/getinsomnia/Insomnia /" | sudo tee -a /etc/apt/sources.list.d/insomnia.list
-wget --quiet -O - https://insomnia.rest/keys/debian-public.key.asc | sudo apt-key add -
-sudo apt-get update
-sudo apt-get install insomnia
-
 echo 'installing zoom'
 wget -O Downloads/zoom.deb https://zoom.us/client/latest/zoom_amd64.deb
 sudo apt update
@@ -165,11 +165,9 @@ sudo apt install ~/Downloads/zoom.deb
 
 ######## media players/editors ########
 
-echo 'installing gimp'
-sudo add-apt-repository ppa:otto-kesselgulasch/gimp
-sudo apt-get update
-sudo apt-get install gimp gimp-gmic gmic
-sudo apt-get install gimp-plugin-registry
+echo 'installing glimpse'
+sudo apt-get update -y
+sudo apt-get install -y glimpse
 
 echo 'installing vlc'
 sudo snap install vlc
